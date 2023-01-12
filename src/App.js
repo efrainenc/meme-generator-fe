@@ -9,6 +9,7 @@ function App() {
     <div className="meme-container">
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/add/" element={<AddPage />} />
         <Route path="/add/:imageId" element={<AddPage />} />
         <Route path="/view/:id" element={<View />} />
       </Routes>

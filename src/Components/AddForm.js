@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const AddForm = (props) => {
     let topOne = 0, topTwo = 0, leftOne = 0, leftTwo = 0;
 
-  if (props.image) {
+    if (props.data) {
     topOne = props.image.text_one_location ? props.image.text_one_location.top : 0;
     leftOne = props.image.text_one_location ? props.image.text_one_location.left : 0;
 
@@ -13,6 +13,7 @@ const AddForm = (props) => {
       leftTwo = props.image.text_two_location ? props.image.text_two_location.left : 0;
       console.log(topTwo)
     }
+  }
     // console.log(topOne)
   //   if (props.image.text_one_location) {
   //     topOne = props.image.text_one_location.top;
@@ -23,10 +24,11 @@ const AddForm = (props) => {
   //     topTwo = props.image.text_two_location.top;
   //     leftTwo = props.image.tex_location.left;
   //   }
+  const image = props.image && props.image.image;
   return (
     <div className="meme-gen-container">
       <div className="w-50 p-3">
-        <div className="meme-photo" style={{backgroundImage: `url(${props.image.image})`}}>
+        <div className="meme-photo" style={{backgroundImage: `url(${image})`}}>
           <div className="text-box" style={{top: `${topOne}px`, left: `${leftOne}px`, color: props.form.color_one}}>
             {props.form.text_one}
           </div>
@@ -86,7 +88,6 @@ const AddForm = (props) => {
       </div>
     </div>
   )
-          }
 }
 
 export default AddForm
