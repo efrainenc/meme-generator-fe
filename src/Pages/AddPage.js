@@ -25,7 +25,7 @@ const AddPage = () => {
   }
 
   const src = 'https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg',
-        top = 200, left = 200;
+        top = 100, left = 200;
 
   return (
     <AddForm handleChange={handleChange} 
