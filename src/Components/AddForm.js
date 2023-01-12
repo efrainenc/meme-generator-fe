@@ -2,90 +2,69 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import Choices from '../Images/Choices'
 
-const AddForm = () => {
-
-  // State to refresh page.
-  const [refreshPage, setRefreshPage] = useState(false)
-  const [newForm, setNewForm] = useState({
-    top_line: "",
-    bottom_line: "",
-  });
-
-  // setting fetched memes to state to post
-  const [memeState, setMemeState] = useState({})
-
-  // url to memes db for post
-  const memeURL = `https://hack-a-meme.herokuapp.com/meme/`
-
-  // fetch to get memes
-  const getMemes= async()=>
-  {
-    try
-    {
-      const res= await fetch(memeURL)
-      const allMemes= await res.json()
-      setMemeState(allMemes)
-    }catch(err)
-    {
-      console.log(err)
-    }
-  }
-
-  // Event handler to setNewForm state to inputs when inputs are changed.
-  const handleChange= (e)=>
-  {
-    setNewForm({ ...newForm, [e.target.name]: e.target.value });
-  };
-
-  // call this onClick when u want to post
-  const refreshPageFunction = () => 
-  {
-    setRefreshPage(current => !current)
-    setTimeout(function() 
-    {
-      setRefreshPage(current => !current)
-    }, 1000);
-  }
-
-  // Event handler to POST a meme with newForm State input.
-  const createMeme= async(e)=>
-  {
-    e.preventDefault()
-    // setting currentState variable as newForm state input after submit.
-    const currentState = {...newForm}
-
-    try{
-        // Specifying request method , headers, Content-Type.
-        const requestOptions = {
-            method: "POST", 
-            headers: {
-                "Content-Type": "application/json"},
-            body: JSON.stringify(currentState)
-        } 
-        // post fetch.
-        const response = await fetch(memeURL, requestOptions);
-
-        // Parse the data from the response into JS (from JSON).
-        const createdMeme = await response.json()
-        // Update local state with response (json from be).
-        setMemeState([...memeState, createdMeme])
-        // Reset newForm state so that our form empties out.
-        setNewForm({
-          top_line: "",
-          bottom_line: "",
-        })
-    }catch(err){
-        console.log(err)
-    }
-  }
-
-
-  // fetches memes on refresh
-  useEffect(()=>{getMemes();}, [refreshPage])
+const AddForm = (props) => {
+  const { handleChange, handleSubmit, setForm, form, initialState, src, top, left } = props;
 
   return (
     <div className="meme-gen-container">
-      <Choices />
+      <div className="w-50 p-3">
+        <div className="meme-photo" style={{backgroundImage: `url(${src})`}}>
+          <div className="text-box-1" style={{top: top, left: left}}>
+            Text here
+          </div>
+        </div>
+      </div>
+      <div className="w-50 pe-3">
+        <div className="pt-3"><button>Upload new template</button></div>
+        <div className="d-flex flex-column align-items-center mt-3 pe-3">
+          <div className="all-memes">
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+          </div>
+          <span style={{fontSize:'10pt',color:'#717171'}}>scroll left and right for more images</span>
+        </div>
+        <div className="text-input mt-4">
+          <div className="text-input-left">
+            <textarea type="text" 
+                      placeholder="Top text here ..." 
+                      name="text_one" 
+                      value={form.text_one} 
+                      onChange={handleChange}
+            ></textarea></div>
+          <div className="text-input-right"></div>
+        </div>
+        <div className="text-input mt-3">
+          <div className="text-input-left">
+            <textarea type="text" 
+                      placeholder="Bottom text here ..." 
+                      name="text_two" 
+                      value={form.text_two} 
+                      onChange={handleChange}
+            ></textarea></div>
+          <div className="text-input-right"></div>
+        </div>
+        <div className="mt-3">
+          <button className="submit-btn"
+                  onClick={handleSubmit}>Generate</button>
+          <button className="ms-3" 
+                  style={{borderRadius:'10px',padding:'10px'}} 
+                  onClick={() => setForm(initialState)}
+          >Reset</button>
+        </div>
+      </div>
     </div>
   )
 }

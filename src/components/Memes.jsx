@@ -29,14 +29,15 @@ const Memes = () => {
 
   return (
     <>
-      {memeState?.map((memeMap, memeMapKey) =>
+      {/* {memeState?.map((memeMap, memeMapKey) =>
         {
-          console.log(memeMap)
-        // <div key={memeMapKey} className='memes'>
-        //   <img src={memeMap.image} />
-        // </div>
+          return(
+          <div key={memeMapKey} className='memes'>
+            <img src={memeMap.image} />
+          </div>
+        )
         })
-      }
+      } */}
     </>
   )
 }
