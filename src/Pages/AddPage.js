@@ -1,47 +1,56 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router';
 import AddForm from '../Components/AddForm'
 
 const AddPage = () => {
   const { imageId } = useParams();
   const navigate = useNavigate();
-  const initialState = {text_one: '', text_two: ''};
+  const initialState = {text_one: '', text_two: '', color_one: 'black', color_two: 'black'};
   const [form, setForm] = useState(initialState);
+  const [data, setData] = useState(null);
+  const [image, setImage] = useState(null);
 
-  const fetchImage = () => {
-    
+  const fetchImages = async () => {
+    const resp = await fetch(`http://localhost:4000/image/`);
+    const data = await resp.json();
+    setData(data);
+  }
+
+  const fetchImage = async () => {
+    const resp = await fetch(`http://localhost:4000/image/${imageId}`);
+    const data = await resp.json();
+    setImage(data);
   }
   
   const handleChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value});
   }
 
-  const handleSubmit = async () => {console.log(form)
+  const handleSubmit = async () => {
     try {
       const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) }
-      const addedMeme = await fetch('https://hack-meme-gen.herokuapp.com/meme/', options);
+      const addedMeme = await fetch('http://localhost:4000/', options);
       const added = await addedMeme.json();
       navigate(`/view/${added._id}`);
+      console.log(form)
     } catch (error) {
       console.error(error);
     }
   }
 
-  const src = 'https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg',
-        firstTop = 0, firstLeft = 100,
-        secondTop = 400, secondLeft = 100;
-
+  useEffect(() => {
+    fetchImages();
+    fetchImage();
+  }, []);
+console.log(image)
   return (
     <AddForm handleChange={handleChange} 
              handleSubmit={handleSubmit} 
              setForm={setForm} 
              form={form} 
              initialState={initialState}
-             src={src}
-             firstTop={firstTop}
-             firstLeft={firstLeft}
-             secondTop={secondTop}
-             secondLeft={secondLeft}
+             data={data}
+             image={image}
     />
   )
 }
