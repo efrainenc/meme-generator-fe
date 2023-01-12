@@ -1,11 +1,15 @@
 import './css/App.css';
-import Choices from './Images/Choices';
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './Pages/LandingPage';
+import AddPage from './Pages/AddPage';
 
 function App() {
   return (
-    <div className="App">
-      <h1> MEME GENERATOR</h1>
-      <Choices />
+    <div className="meme-container">
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/add/" element={<AddPage />} />
+      </Routes>
     </div>
   );
 }
