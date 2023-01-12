@@ -5,11 +5,13 @@ import AddPage from './Pages/AddPage';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/add/" element={<AddPage />} />
-    </Routes>
+    <div className="meme-container">
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/add/:imageId" element={<AddPage />} />
+      </Routes>
 
+    </div>
   );
 }
 
