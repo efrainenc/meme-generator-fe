@@ -7,10 +7,10 @@ const View = () => {
   const [image, setImage] = useState(null);
 
   const fetchData = async () => {
-    const resp = await fetch(`https://hack-meme-gen.herokuapp.com/meme/${id}`);
+    const resp = await fetch(`http://localhost:4000/meme/${id}`);
     const data = await resp.json();
     setData(data);console.log(data)
-    const image = await fetch(`https://hack-meme-gen.herokuapp.com/image/${data.image}`);
+    const image = await fetch(`http://localhost:4000/image/${data.image}`);
     const imgdata = await image.json();
     setImage(imgdata);
   }
