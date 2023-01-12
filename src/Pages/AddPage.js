@@ -29,7 +29,7 @@ const AddPage = () => {
   const handleSubmit = async () => {
     try {
       const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) }
-      const addedMeme = await fetch('https://hack-meme-gen.herokuapp.com/', options);
+      const addedMeme = await fetch('https://hack-meme-gen.herokuapp.com/meme/', options);
       const added = await addedMeme.json();
       navigate(`/view/${added._id}`);
       console.log(form)

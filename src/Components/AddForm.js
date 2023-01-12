@@ -5,6 +5,15 @@ const AddForm = (props) => {
     let topOne = 0, topTwo = 0, leftOne = 0, leftTwo = 0;
 
   if (props.image) {
+    topOne = props.image.text_one_location ? props.image.text_one_location.top : 0;
+    leftOne = props.image.text_one_location ? props.image.text_one_location.left : 0;
+
+    if (props.image.text_two_location) {
+      topTwo = props.image.text_one_location ? props.image.text_two_location.top : 0;
+      leftTwo = props.image.text_two_location ? props.image.text_two_location.left : 0;
+      console.log(topTwo)
+    }
+    // console.log(topOne)
   //   if (props.image.text_one_location) {
   //     topOne = props.image.text_one_location.top;
   //     leftOne = props.image.text_one_location.left;
@@ -18,10 +27,10 @@ const AddForm = (props) => {
     <div className="meme-gen-container">
       <div className="w-50 p-3">
         <div className="meme-photo" style={{backgroundImage: `url(${props.image.image})`}}>
-          <div className="text-box" style={{top: topOne, left: leftOne, color: props.form.color_one}}>
+          <div className="text-box" style={{top: `${topOne}px`, left: `${leftOne}px`, color: props.form.color_one}}>
             {props.form.text_one}
           </div>
-          <div className="text-box" style={{top: topTwo, left: leftTwo, color: props.form.color_two}}>
+          <div className="text-box" style={{top: `${topTwo}px`, left: `${leftTwo}px`, color: props.form.color_two}}>
             {props.form.text_two}
           </div>
         </div>
