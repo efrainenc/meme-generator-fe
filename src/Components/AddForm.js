@@ -1,13 +1,14 @@
 import React from 'react'
 
 const AddForm = (props) => {
-  const { handleChange, handleSubmit, setForm, form, initialState, src, top, left } = props;
-
   return (
     <div className="meme-gen-container">
       <div className="w-50 p-3">
-        <div className="meme-photo" style={{backgroundImage: `url(${src})`}}>
-          <div className="text-box-1" style={{top: top, left: left}}>
+        <div className="meme-photo" style={{backgroundImage: `url(${props.src})`}}>
+          <div className="text-box" style={{top: props.firstTop, left: props.firstLeft}}>
+            Text here
+          </div>
+          <div className="text-box" style={{top: props.secondTop, left: props.secondLeft}}>
             Text here
           </div>
         </div>
@@ -39,8 +40,8 @@ const AddForm = (props) => {
             <textarea type="text" 
                       placeholder="Top text here ..." 
                       name="text_one" 
-                      value={form.text_one} 
-                      onChange={handleChange}
+                      value={props.form.text_one} 
+                      onChange={props.handleChange}
             ></textarea></div>
           <div className="text-input-right"></div>
         </div>
@@ -49,17 +50,17 @@ const AddForm = (props) => {
             <textarea type="text" 
                       placeholder="Bottom text here ..." 
                       name="text_two" 
-                      value={form.text_two} 
-                      onChange={handleChange}
+                      value={props.form.text_two} 
+                      onChange={props.handleChange}
             ></textarea></div>
           <div className="text-input-right"></div>
         </div>
         <div className="mt-3">
           <button className="submit-btn"
-                  onClick={handleSubmit}>Generate</button>
+                  onClick={props.handleSubmit}>Generate</button>
           <button className="ms-3" 
                   style={{borderRadius:'10px',padding:'10px'}} 
-                  onClick={() => setForm(initialState)}
+                  onClick={() => props.setForm(props.initialState)}
           >Reset</button>
         </div>
       </div>

@@ -26,14 +26,15 @@ button {
   height: 500px;
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
 }
 
-.text-box-1 {
+.text-box {
   width: fit-content;
   height: fit-content;
   position: relative;
   font-weight: bold;
-  color: white;
+  color: black;
   font-size: 22pt;
 }
 
