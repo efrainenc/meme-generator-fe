@@ -1,15 +1,27 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const AddForm = (props) => {
-  console.log(props.image)
-  return props.image && (
+    let topOne = 0, topTwo = 0, leftOne = 0, leftTwo = 0;
+
+  if (props.image) {
+  //   if (props.image.text_one_location) {
+  //     topOne = props.image.text_one_location.top;
+  //     leftOne = props.image.text_one_location.left;
+  //   }
+    
+  //   if (props.image.text_two_location) {
+  //     topTwo = props.image.text_two_location.top;
+  //     leftTwo = props.image.tex_location.left;
+  //   }
+  return (
     <div className="meme-gen-container">
       <div className="w-50 p-3">
         <div className="meme-photo" style={{backgroundImage: `url(${props.image.image})`}}>
-          <div className="text-box" style={{top: props.image.text_one_location.top, left: props.image.text_one_location.left, color: props.form.color_one}}>
+          <div className="text-box" style={{top: topOne, left: leftOne, color: props.form.color_one}}>
             {props.form.text_one}
           </div>
-          <div className="text-box" style={{top: props.image.text_one_location.top, left: props.image.text_one_location.left, color: props.form.color_two}}>
+          <div className="text-box" style={{top: topTwo, left: leftTwo, color: props.form.color_two}}>
             {props.form.text_two}
           </div>
         </div>
@@ -21,7 +33,7 @@ const AddForm = (props) => {
             {
               props.data && props.data.map((img) => {
                 return (
-                  <img src={img.image} />
+                  <Link to={`/add/${img._id}`}><img src={img.image} /></Link>
                 )
               })
             }
@@ -65,6 +77,7 @@ const AddForm = (props) => {
       </div>
     </div>
   )
+          }
 }
 
 export default AddForm
