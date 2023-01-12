@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const AddForm = (props) => {
-  return (
+  console.log(props.image)
+  return props.image && (
     <div className="meme-gen-container">
       <div className="w-50 p-3">
-        <div className="meme-photo" style={{backgroundImage: `url(${props.src})`}}>
-          <div className="text-box" style={{top: props.firstTop, left: props.firstLeft}}>
-            Text here
+        <div className="meme-photo" style={{backgroundImage: `url(${props.image.image})`}}>
+          <div className="text-box" style={{top: props.image.text_one_location.top, left: props.image.text_one_location.left, color: props.form.color_one}}>
+            {props.form.text_one}
           </div>
-          <div className="text-box" style={{top: props.secondTop, left: props.secondLeft}}>
-            Text here
+          <div className="text-box" style={{top: props.image.text_one_location.top, left: props.image.text_one_location.left, color: props.form.color_two}}>
+            {props.form.text_two}
           </div>
         </div>
       </div>
@@ -17,21 +18,13 @@ const AddForm = (props) => {
         <div className="pt-3"><button>Upload new template</button></div>
         <div className="d-flex flex-column align-items-center mt-3 pe-3">
           <div className="all-memes">
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
-            <img src="https://imgflip.com/s/meme/Bernie-I-Am-Once-Again-Asking-For-Your-Support.jpg" />
+            {
+              props.data && props.data.map((img) => {
+                return (
+                  <img src={img.image} />
+                )
+              })
+            }
           </div>
           <span style={{fontSize:'10pt',color:'#717171'}}>scroll left and right for more images</span>
         </div>
@@ -43,7 +36,10 @@ const AddForm = (props) => {
                       value={props.form.text_one} 
                       onChange={props.handleChange}
             ></textarea></div>
-          <div className="text-input-right"></div>
+          <div className="text-input-right">
+            <button onClick={props.handleChange} name="color_one" value="white" className="white-color">White</button>
+            <button onClick={props.handleChange} name="color_one" value="black" className="black-color">Black</button>
+          </div>
         </div>
         <div className="text-input mt-3">
           <div className="text-input-left">
@@ -53,7 +49,10 @@ const AddForm = (props) => {
                       value={props.form.text_two} 
                       onChange={props.handleChange}
             ></textarea></div>
-          <div className="text-input-right"></div>
+          <div className="text-input-right">
+            <button onClick={props.handleChange} name="color_two" value="white" className="white-color">White</button>
+            <button onClick={props.handleChange} name="color_two" value="black" className="black-color">Black</button>
+          </div>
         </div>
         <div className="mt-3">
           <button className="submit-btn"
