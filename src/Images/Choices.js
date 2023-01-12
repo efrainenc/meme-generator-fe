@@ -13,13 +13,13 @@ const Choices = () => {
             </select>
           </nav>
 
-          <h3 class="topline">Top Line:</h3>
-          <p class="topline">
+          <h3 className="topline">Top Line:</h3>
+          <p className="topline">
             <input type="text" name="topline" />
           </p>
 
-          <h3 class="bottomline">Bottom Line:</h3>
-          <p class="bottomline">
+          <h3 className="bottomline">Bottom Line:</h3>
+          <p className="bottomline">
             <input type="text" name="bottomline" />
           </p>
         </div>
