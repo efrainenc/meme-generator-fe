@@ -1,12 +1,11 @@
 import './css/App.css';
-import React from 'react'
-import Memes from './components/Memes';
+import Choices from './Images/Choices';
 
 function App() {
   return (
     <div className="App">
       <h1> MEME GENERATOR</h1>
-      <Memes />
+      <Choices />
     </div>
   );
 }
