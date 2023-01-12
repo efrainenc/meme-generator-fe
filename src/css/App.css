@@ -26,15 +26,12 @@ button {
   height: 500px;
   background-repeat: no-repeat;
   background-size: contain;
-  display: relative;
 }
 
 .text-box-1 {
   width: fit-content;
   height: fit-content;
   position: relative;
-  top: 200px;
-  left: 200px;
   font-weight: bold;
   color: white;
   font-size: 22pt;
