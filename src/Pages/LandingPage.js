@@ -4,6 +4,7 @@ const LandingPage = () => {
   return (
     <div>
       <h1>MEME GENERATOR</h1>
+
     </div>
   )
 }

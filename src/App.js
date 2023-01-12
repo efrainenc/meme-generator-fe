@@ -12,6 +12,7 @@ function App() {
         <Route path="/add/:imageId" element={<AddPage />} />
         <Route path="/view/:id" element={<View />} />
       </Routes>
+
     </div>
   );
 }
