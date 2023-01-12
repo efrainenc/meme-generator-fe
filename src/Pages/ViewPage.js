@@ -33,10 +33,10 @@ const View = () => {
     return data && image && (
       <div className="w-50 p-3">
         <div className="meme-photo" style={{backgroundImage: `url(${image.image})`}}>
-          <div className="text-box" style={{top: `${topOne}px`, left: `${leftOne}px`, color: image.color_one}}>
+          <div className="text-box" style={{top: `${topOne}px`, left: `${leftOne}px`, color: data.color_one}}>
             {data.text_one}
           </div>
-          <div className="text-box" style={{top: `${topTwo}px`, left: `${leftTwo}px`, color: image.color_two}}>
+          <div className="text-box" style={{top: `${topTwo}px`, left: `${leftTwo}px`, color: data.color_two}}>
             {data.text_two}
           </div>
         </div>
