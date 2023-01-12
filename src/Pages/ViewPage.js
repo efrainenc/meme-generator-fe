@@ -28,7 +28,6 @@ const View = () => {
     if (image.text_two_location) {
       topTwo = image.text_one_location ? image.text_two_location.top : 0;
       leftTwo = image.text_two_location ? image.text_two_location.left : 0;
-      console.log(topTwo)
     }
 
     return data && image && (

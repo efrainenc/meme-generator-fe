@@ -11,24 +11,15 @@ const AddForm = (props) => {
     if (props.image.text_two_location) {
       topTwo = props.image.text_one_location ? props.image.text_two_location.top : 0;
       leftTwo = props.image.text_two_location ? props.image.text_two_location.left : 0;
-      console.log(topTwo)
     }
   }
-    // console.log(topOne)
-  //   if (props.image.text_one_location) {
-  //     topOne = props.image.text_one_location.top;
-  //     leftOne = props.image.text_one_location.left;
-  //   }
-    
-  //   if (props.image.text_two_location) {
-  //     topTwo = props.image.text_two_location.top;
-  //     leftTwo = props.image.tex_location.left;
-  //   }
+
   const image = props.image && props.image.image;
   return (
     <div className="meme-gen-container">
       <div className="w-50 p-3">
         <div className="meme-photo" style={{backgroundImage: `url(${image})`}}>
+          {!image && <h2>Select a meme image</h2>}
           <div className="text-box" style={{top: `${topOne}px`, left: `${leftOne}px`, color: props.form.color_one}}>
             {props.form.text_one}
           </div>
@@ -42,9 +33,9 @@ const AddForm = (props) => {
         <div className="d-flex flex-column align-items-center mt-3 pe-3">
           <div className="all-memes">
             {
-              props.data && props.data.map((img) => {
+              props.data && props.data.map((img, idx) => {
                 return (
-                  <Link to={`/add/${img._id}`}><img src={img.image} /></Link>
+                  <Link to={`/add/${img._id}`} key={idx}><img src={img.image} /></Link>
                 )
               })
             }
