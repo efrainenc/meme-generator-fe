@@ -12,13 +12,13 @@ const AddPage = () => {
   const [image, setImage] = useState(null);
 
   const fetchImages = async () => {
-    const resp = await fetch(`http://localhost:4000/image/`);
+    const resp = await fetch(`https://hack-meme-gen.herokuapp.com/image/`);
     const data = await resp.json();console.log(data)
     setData(data);
   }
 
   const fetchImage = async () => {
-    const resp = await fetch(`http://localhost:4000/image/${imageId}`);
+    const resp = await fetch(`https://hack-meme-gen.herokuapp.com/image/${imageId}`);
     const data = await resp.json();
     setImage(data);
   }
@@ -30,7 +30,7 @@ const AddPage = () => {
   const handleSubmit = async () => {
     try {
       const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({...form, image: mongoose.Types.ObjectId(imageId)}) }
-      const addedMeme = await fetch('http://localhost:4000/meme/', options);
+      const addedMeme = await fetch('https://hack-meme-gen.herokuapp.com/meme/', options);
       const added = await addedMeme.json();
       navigate(`/view/${added._id}`);
       console.log(form)
