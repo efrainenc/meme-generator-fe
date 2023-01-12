@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router';
 import AddForm from '../Components/AddForm'
+const mongoose = require('mongoose');
 
 const AddPage = () => {
   const { imageId } = useParams();
@@ -11,25 +12,25 @@ const AddPage = () => {
   const [image, setImage] = useState(null);
 
   const fetchImages = async () => {
-    const resp = await fetch(`https://hack-meme-gen.herokuapp.com/image/`);
-    const data = await resp.json();
+    const resp = await fetch(`http://localhost:4000/image/`);
+    const data = await resp.json();console.log(data)
     setData(data);
   }
 
   const fetchImage = async () => {
-    const resp = await fetch(`https://hack-meme-gen.herokuapp.com/image/${imageId}`);
+    const resp = await fetch(`http://localhost:4000/image/${imageId}`);
     const data = await resp.json();
     setImage(data);
   }
-  
+  console.log(data)
   const handleChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value});
   }
 
   const handleSubmit = async () => {
     try {
-      const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) }
-      const addedMeme = await fetch('https://hack-meme-gen.herokuapp.com/meme/', options);
+      const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({...form, image: mongoose.Types.ObjectId(imageId)}) }
+      const addedMeme = await fetch('http://localhost:4000/meme/', options);
       const added = await addedMeme.json();
       navigate(`/view/${added._id}`);
       console.log(form)
@@ -37,7 +38,7 @@ const AddPage = () => {
       console.error(error);
     }
   }
-
+console.log(imageId)
   useEffect(() => {
     fetchImages();
     fetchImage();
