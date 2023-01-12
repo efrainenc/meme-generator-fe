@@ -1,10 +1,9 @@
 import React from 'react'
+import AddForm from '../Components/AddForm'
 
 const AddPage = () => {
   return (
-    <div>
-      
-    </div>
+    <AddForm />
   )
 }
 
