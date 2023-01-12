@@ -13,7 +13,7 @@ const AddPage = () => {
 
   const fetchImages = async () => {
     const resp = await fetch(`https://hack-meme-gen.herokuapp.com/image/`);
-    const data = await resp.json();console.log(data)
+    const data = await resp.json();
     setData(data);
   }
 
@@ -22,7 +22,7 @@ const AddPage = () => {
     const data = await resp.json();
     setImage(data);
   }
-  console.log(data)
+
   const handleChange = (e) => {
     setForm({...form, [e.target.name]: e.target.value});
   }
@@ -33,12 +33,11 @@ const AddPage = () => {
       const addedMeme = await fetch('https://hack-meme-gen.herokuapp.com/meme/', options);
       const added = await addedMeme.json();
       navigate(`/view/${added._id}`);
-      console.log(form)
     } catch (error) {
       console.error(error);
     }
   }
-console.log(imageId)
+
   useEffect(() => {
     fetchImages();
     fetchImage();
